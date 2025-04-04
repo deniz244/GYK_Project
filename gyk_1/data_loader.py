@@ -12,7 +12,7 @@ class DataLoader:
     def create_db_engine(self):
         url = f"postgresql+psycopg2://{self.user}:{self.password}@{self.host}/{self.db_name}"
         engine = create_engine(url)
-        print("Database bağlantısı başarılı!")
+        print("The connecction was successful")
         return engine
 
     def load_data(self):

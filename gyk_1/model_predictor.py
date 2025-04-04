@@ -46,6 +46,7 @@ class ModelPredictor:
         # Eğer scaler varsa (örneğin KNN için), input scale edilir
         if self.scaler:
             df_scaled = self.scaler.transform(df)
+            df_scaled = pd.DataFrame(df_scaled, columns=df.columns)
             prediction = self.model.predict(df_scaled)
         else:
             prediction = self.model.predict(df)

@@ -3,33 +3,31 @@ from featureEng import FeatureEngineer
 from model_trainer import ModelTrainer
 from model_predictor import ModelPredictor
 
+# yazacağımız her yazı ing olsun !!!
 
-# 1. Veri Yükleme
+
+
+# 1. Loading Data
 loader = DataLoader(user="postgres", password="1234", host="localhost", db_name="GYK1Northwind")
 df = loader.load_data()
 
-# 2. Feature Engineering
+# 2. Feature Engineering (Preprocessing)
 fe = FeatureEngineer(df)
-fe.basic_cleaning()
-fe.process_date_features()
-fe.process_product_features()
-fe.process_customer_features()
-fe.handle_missing_values()
 
-# 3. Hazır Veri
+# 3. Prepared of Data
 final_df = fe.get_dataframe()
 print(final_df.head())
 
-# 4. Model Eğitimi
+# 4. Model Learning
 trainer = ModelTrainer(final_df)
 trainer.prepare_data()
 trainer.train_and_compare_models()
-trainer.save_best_model_automatically(file_path="model.pkl", scaler_path="scaler.pkl")  # Otomatik seçim ve kayıt
+trainer.save_best_model_automatically(file_path="model.pkl")  # Automatic choose and register
 
-#5. Model Yükleme ve Tahmin
+#5. Load Model and Predict
 predictor = ModelPredictor()
 
-# Örnek tahmin
+# Predict Sample
 sample_input = {
     "unit_price": 20.0,
     "quantity": 10,
@@ -40,4 +38,4 @@ sample_input = {
 }
 
 prediction = predictor.predict(sample_input)
-print(f"Tahmin edilen satış: {prediction:.2f}")
+print(f"Sales of predict: {prediction:.2f}")

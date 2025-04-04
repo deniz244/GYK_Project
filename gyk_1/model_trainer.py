@@ -2,6 +2,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, root_mean_squared_error
 import joblib
 
@@ -11,7 +12,8 @@ class ModelTrainer:
         self.models = {
             "LinearRegression": LinearRegression(),
             "DecisionTree": DecisionTreeRegressor(random_state=42),
-            "KNN": KNeighborsRegressor()
+            "KNN": KNeighborsRegressor(),
+            "RandomForest": RandomForestRegressor(random_state=42)
         }
         self.trained_models = {}
         self.results = []
@@ -27,7 +29,7 @@ class ModelTrainer:
         from sklearn.model_selection import train_test_split
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        # Sadece KNN için scale edilecek
+        # Just for KNN  scale edilecek
         self.X_train_scaled = self.scaler.fit_transform(self.X_train)
         self.X_test_scaled = self.scaler.transform(self.X_test)
 
@@ -52,9 +54,9 @@ class ModelTrainer:
         best_model = self.trained_models[best_model_name]
 
         joblib.dump(best_model, file_path)
-        print(f"En iyi model ({best_model_name}) R2: {best_r2:.4f} → '{file_path}' olarak kaydedildi.")
+        print(f"The best model save as ({best_model_name}) R2: {best_r2:.4f} → '{file_path}.'")
 
         # Sadece KNN için scaler kaydedilir
         if best_model_name == "KNN":
             joblib.dump(self.scaler, scaler_path)
-            print(f"Scaler da '{scaler_path}' dosyasına kaydedildi.")
+            print(f"The model saved to '{scaler_path}' file.")
