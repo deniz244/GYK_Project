@@ -4,6 +4,13 @@ class FeatureEngineer:
     def __init__(self, df):
         self.df = df.copy()
 
+    #negatif/anormal verileri temizleme
+    def basic_cleaning(self):
+        self.df = self.df[self.df["quantity"] > 0]
+        self.df = self.df[self.df["unit_price"] > 0]
+        self.df = self.df[self.df["discount"].between(0, 1)] # %0 ile %100 arasında indirim olmalı
+        print("Anlamlı olmayan veri temizliği yapıldı.")
+
     def process_date_features(self):
         self.df['order_date'] = pd.to_datetime(self.df['order_date'])
         self.df['year'] = self.df['order_date'].dt.year

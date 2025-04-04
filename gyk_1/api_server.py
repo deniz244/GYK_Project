@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from gyk_1.model_predictor import ModelPredictor
-import pandas as pd
 
 # FastAPI uygulamasını başlat
 app = FastAPI(
@@ -11,7 +10,7 @@ app = FastAPI(
 )
 
 # Model yükle
-predictor = ModelPredictor(model_path="model.pkl")
+predictor = ModelPredictor(model_path="model.pkl", scaler_path="scaler.pkl")
 
 
 # API üzerinden beklenen veri yapısı

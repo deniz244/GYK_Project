@@ -10,6 +10,7 @@ df = loader.load_data()
 
 # 2. Feature Engineering
 fe = FeatureEngineer(df)
+fe.basic_cleaning()
 fe.process_date_features()
 fe.process_product_features()
 fe.process_customer_features()
@@ -22,12 +23,10 @@ print(final_df.head())
 # 4. Model Eğitimi
 trainer = ModelTrainer(final_df)
 trainer.prepare_data()
-trainer.train()
-trainer.evaluate()
-trainer.save_model()
+trainer.train_and_compare_models()
+trainer.save_best_model_automatically(file_path="model.pkl", scaler_path="scaler.pkl")  # Otomatik seçim ve kayıt
 
 #5. Model Yükleme ve Tahmin
-# Model yükle
 predictor = ModelPredictor()
 
 # Örnek tahmin
