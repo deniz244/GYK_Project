@@ -1,0 +1,41 @@
+from data_loader import DataLoader
+from featureEng import FeatureEngineer
+from model_trainer import ModelTrainer
+from model_predictor import ModelPredictor
+
+# yazacağımız her yazı ing olsun !!!
+
+
+
+# 1. Loading Data
+loader = DataLoader(user="postgres", password="1234", host="localhost", db_name="GYK1Northwind")
+df = loader.load_data()
+
+# 2. Feature Engineering (Preprocessing)
+fe = FeatureEngineer(df)
+
+# 3. Prepared of Data
+final_df = fe.get_dataframe()
+print(final_df.head())
+
+# 4. Model Learning
+trainer = ModelTrainer(final_df)
+trainer.prepare_data()
+trainer.train_and_compare_models()
+trainer.save_best_model_automatically(file_path="model.pkl")  # Automatic choose and register
+
+#5. Load Model and Predict
+predictor = ModelPredictor()
+
+# Predict Sample
+sample_input = {
+    "unit_price": 20.0,
+    "quantity": 10,
+    "discount": 0.05,
+    "year": 2022,
+    "month": 3,
+    "category_id": 2
+}
+
+prediction = predictor.predict(sample_input)
+print(f"Sales of predict: {prediction:.2f}")
