@@ -35,5 +35,5 @@ class DataLoader:
         LEFT JOIN customers c ON o.customer_id = c.customer_id
         """
         df = pd.read_sql(query, self.engine)
-        print(f"Veri başarıyla yüklendi! Toplam kayıt sayısı: {len(df)}")
+        print(f"Data successfully loaded! Total number of records: {len(df)}")
         return df
