@@ -10,25 +10,25 @@ class ModelPredictor:
     def load_model(self, model_path):
         try:
             model = joblib.load(model_path)
-            print(f"Model başarıyla yüklendi: {model_path}")
+            print(f"The model file successfully loaded: {model_path}")
             return model
         except FileNotFoundError:
-            raise Exception(f"Model dosyası bulunamadı: {model_path}")
+            raise Exception(f"Couldn't find model file: {model_path}")
         
     def load_scaler_if_needed(self, scaler_path):
         if os.path.exists(scaler_path):
             try:
                 scaler = joblib.load(scaler_path)
-                print(f"Scaler yüklendi: {scaler_path}")
+                print(f"Scaler loaded: {scaler_path}")
                 return scaler
             except Exception as e:
-                raise Exception(f"Scaler yüklenemedi: {e}")
+                raise Exception(f"Scaler couldn't loaded: {e}")
         return None
 
 
     def predict(self, input_data: dict):
         """
-        input_data örneği:
+        input_data sample:
         {
             "unit_price": 15.0,
             "quantity": 20,
@@ -39,7 +39,7 @@ class ModelPredictor:
         }
         """
 
-        # Dataframe'e çevir
+        # Transform Dataframe
         df = pd.DataFrame([input_data])
 
         # Tahmin
