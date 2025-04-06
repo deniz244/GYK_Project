@@ -79,9 +79,6 @@ GYK_Project/
 └── README.md
 ```
 
-## 👩‍💻 Contributors
-
-- Deniz Tunc — AI & Backend
 
 
 
