@@ -3,8 +3,6 @@ from featureEng import FeatureEngineer
 from model_trainer import ModelTrainer
 from model_predictor import ModelPredictor
 
-# yazacağımız her yazı ing olsun !!!
-
 
 def main():
 
@@ -17,7 +15,9 @@ def main():
 
     # 3. Prepared of Data
     final_df = fe.get_dataframe()
-    print(final_df.head())
+    
+    # final_df.to_csv("current_data.csv", inkdex=False)
+    print(final_df.head(5))
 
     # 4. Model Learning
     trainer = ModelTrainer(final_df)
