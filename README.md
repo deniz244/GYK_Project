@@ -8,7 +8,7 @@ This project provides a machine learning-powered REST API built with FastAPI to 
 - Compare performance using R² and RMSE
 - Expose model through a REST API for real-time predictions
 - Automatically document endpoints via Swagger UI
-
+/Users/eslemnurgok/GYK_Project/model_evaluation.png
 ## 🛠️ Technologies Used
 
 - Python 3.x
