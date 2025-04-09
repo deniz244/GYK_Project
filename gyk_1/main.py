@@ -7,7 +7,7 @@ from model_predictor import ModelPredictor
 def main():
 
     # 1. Loading Data
-    loader = DataLoader(user="postgres", password="new.pass3", host="localhost", db_name="mydatabase")
+    loader = DataLoader(user="postgres", password="new.pass3", host="db", db_name="mydatabase")
     df = loader.load_data()
 
     # 2. Feature Engineering (Preprocessing)

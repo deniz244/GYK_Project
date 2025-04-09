@@ -18,7 +18,7 @@ app = FastAPI(
 
 # Model yükle
 predictor = ModelPredictor(model_path="model.pkl", scaler_path="scaler.pkl")
-loader = DataLoader(user="postgres", password="new.pass3", host="localhost", db_name="mydatabase")
+loader = DataLoader(user="postgres", password="new.pass3", host="db", db_name="mydatabase")
 
 
 # API üzerinden beklenen veri yapısı
